@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="form" method="post">
+    {% csrf_token %}
+    <input type="text" name="first_name" placeholder="Enter Your FullName"><br>
+    <input type="date" name="dob" placeholder="Enter Your DOB"><br>
+    <input type="number" name="age" placeholder="Enter Your AGE"><br>
+    <input type="email" name="email" placeholder="Enter email"><br>
+    <input type="number" name="phone_number" placeholder="Enter Phone Number"><br>
+
+
+<label for="gender">Gender:</label>
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male">Male</label>
+       <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label><br><br>
+
+
+<select class="btn btn-secondary" id="branchdropdown" >
+    <option value="">Account Type</option>
+    <option value="">Savings</option>
+    <option value="">Current</option>
+
+</select><br><br>
+
+<label for="materials_provided">Materials Provided</label><br>
+      <input type="checkbox" id="debit_card" name="account_type" value="debit_card">
+      <label for="debit_card" >Debit Card</label><br>
+       <input type="checkbox"  id="credit_card" name="account_type" value="credit_card">
+    <label for="credit_card">Credit Card</label><br>
+     <input type="checkbox" id="cheque_book" name="account_type" value="cheque_book">
+    <label for="cheque_book">Cheque Book</label><br><br>
+
+<!--<label for="dropdownitem">Select District</label>-->
+<!-- <select class="btn btn-secondary" id="dropdownitem">-->
+<!--     <option value="">Select District</option>-->
+<!--     <option value="Ernakulam">Ernakulam</option>-->
+<!--     <option value="Palakkad">Palakkad</option>-->
+<!--     <option value="Kozhikode">Kozhikode</option>-->
+<!--     <option value="Thrissur">Thrissur</option>-->
+<!--     <option value="Kottayam">Kottayam</option>-->
+<!-- </select><br><br>-->
+
+<!-- <label for="branch">Select Branch</label>-->
+<!-- <select id="branch">-->
+
+<!-- </select>-->
+
+
+<!-- <script>-->
+<!--     $(document).ready(function(){-->
+<!--            // Define a mapping of categories to their respective items-->
+<!--     var branches ={-->
+<!--       Ernakulam: ["Aluva", "Edapally", "Kalamasherry"],-->
+<!--       Palakkad: ["Kollengode", "Nenmara", "Pattambi"],-->
+<!--       Kozhikode: ["Aredathupalam", "mukkam", "Olavana"],-->
+<!--       Thrissur: ["Athirappilly", "Thiruvambadi", "Chavakkad"],-->
+<!--       Kottayam: ["Cheriyapally","Kumaranalloor","Kumarakom"]-->
+<!--     };-->
+<!--     branchdropdown.empty();-->
+
+<!--     branches[selectedcateory].forEach(function(item){-->
+<!--       branchdropdown.append("<option value='" + item + "'>" + item + "</option>");-->
+
+<!--       });-->
+
+<!--     $("#category").trigger("change");-->
+<!--     });-->
+
+
+
+
+<!-- </script><br><br>-->
+
+
+
+  <label for="firstDropdown">Select District:</label>
+  <select id="firstDropdown" onchange="updateSecondDropdown()">
+    <option value="Ernakulam">Ernakulam</option>
+     <option value="Palakkad">Palakkad</option>
+     <option value="Kozhikode">Kozhikode</option>
+     <option value="Thrissur">Thrissur</option>
+     <option value="Kottayam">Kottayam</option>
+  </select><br><br>
+
+  <label for="secondDropdown">Select Branch:</label>
+  <select id="secondDropdown">
+    <!-- Options will be dynamically populated based on the selection in the first dropdown -->
+  </select><br><br>
+
+  <script>
+    function updateSecondDropdown() {
+      var firstDropdown = document.getElementById('firstDropdown');
+      var secondDropdown = document.getElementById('secondDropdown');
+
+      // Clear existing options in the second dropdown
+      secondDropdown.innerHTML = '';
+
+      // Get the selected value from the first dropdown
+      var selectedValue = firstDropdown.value;
+
+      // Add options to the second dropdown based on the selected value
+      if (selectedValue === 'Ernakulam') {
+        var ErnakulamOptions = ['Aluva', 'Edapally', 'Kalamasherry'];
+        addOptions(secondDropdown, ErnakulamOptions);
+      } else if (selectedValue === 'Palakkad') {
+        var PalakkadOptions = ['Kollengode', 'Nenmara', 'Pattambi'];
+        addOptions(secondDropdown, PalakkadOptions);
+         } else if (selectedValue === 'Kozhikode') {
+        var KozhikodeOptions = ['Aredathupalam', 'mukkam', 'Olavana'];
+        addOptions(secondDropdown, KozhikodeOptions);
+         } else if (selectedValue === 'Thrissur') {
+        var ThrissurOptions = ['Athirappilly', 'Thirivambadi', 'Chavakkad'];
+        addOptions(secondDropdown, ThrissurOptions);
+         } else if (selectedValue === 'Kottayam') {
+        var KottayamOptions = ['Cheriyapally', 'Kumaranalloor', 'Kumarakom'];
+        addOptions(secondDropdown, KottayamOptions);
+      }
+    }
+
+    function addOptions(selectElement, optionsArray) {
+      for (var i = 0; i < optionsArray.length; i++) {
+        var option = document.createElement('option');
+        option.value = optionsArray[i];
+        option.text = optionsArray[i];
+        selectElement.add(option);
+      }
+    }
+
+    // Initialize the second dropdown based on the default value of the first dropdown
+    updateSecondDropdown();
+  </script><br>
+
+
+
+
+     <button> <a href="{% url 'projectapp:demo' %}"  class="btn btn-secondary">Submit</a></button>
+
+
+</form>
+</body>
+</html>

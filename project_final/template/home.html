@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connected Dropdowns</title>
+  <style>
+    /* Optional: Style for better presentation */
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <label for="firstDropdown">Select Category:</label>
+  <select id="firstDropdown" onchange="updateSecondDropdown()">
+    <option value="fruit">Fruit</option>
+    <option value="vegetable">Vegetable</option>
+  </select>
+
+  <label for="secondDropdown">Select Item:</label>
+  <select id="secondDropdown">
+    <!-- Options will be dynamically populated based on the selection in the first dropdown -->
+  </select>
+
+  <script>
+    function updateSecondDropdown() {
+      var firstDropdown = document.getElementById('firstDropdown');
+      var secondDropdown = document.getElementById('secondDropdown');
+
+      // Clear existing options in the second dropdown
+      secondDropdown.innerHTML = '';
+
+      // Get the selected value from the first dropdown
+      var selectedValue = firstDropdown.value;
+
+      // Add options to the second dropdown based on the selected value
+      if (selectedValue === 'fruit') {
+        var fruitOptions = ['Apple', 'Banana', 'Orange'];
+        addOptions(secondDropdown, fruitOptions);
+      } else if (selectedValue === 'vegetable') {
+        var vegetableOptions = ['Carrot', 'Broccoli', 'Spinach'];
+        addOptions(secondDropdown, vegetableOptions);
+      }
+    }
+
+    function addOptions(selectElement, optionsArray) {
+      for (var i = 0; i < optionsArray.length; i++) {
+        var option = document.createElement('option');
+        option.value = optionsArray[i];
+        option.text = optionsArray[i];
+        selectElement.add(option);
+      }
+    }
+
+    // Initialize the second dropdown based on the default value of the first dropdown
+    updateSecondDropdown();
+  </script>
+
+</body>
+</html>
